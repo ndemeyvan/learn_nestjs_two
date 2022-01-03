@@ -4,11 +4,7 @@ import { MessagesRepository } from './messages.repository';
 @Injectable()
 export class MessagesService {
     //Inject message repository
-    repo:MessagesRepository
-    constructor() {
-        this.repo =new  MessagesRepository()
-    }
-
+       constructor(private repo:MessagesRepository) {}
 
     //Create findOne method
     async findOne(id: number): Promise<string> {

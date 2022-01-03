@@ -1,7 +1,9 @@
+import { Injectable } from "@nestjs/common";
 
 
+
+@Injectable()
 export class MessagesRepository {
-
 
     //Create findOne method
     async findOne(id: number): Promise<string> {

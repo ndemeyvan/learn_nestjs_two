@@ -7,11 +7,7 @@ import { MessagesService } from './messages.service';
 @Controller('messages')
 export class MessagesController {
     
-    service :MessagesService
-
-    constructor() {
-        this.service = new MessagesService();
-    }
+    constructor(private service :MessagesService) {}
 
     //Create a Get messsage method
     @Get()
