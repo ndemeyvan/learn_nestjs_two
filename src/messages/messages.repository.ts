@@ -9,8 +9,7 @@ export class MessagesRepository {
     async findOne(id: number): Promise<string> {
         return `Hello findOne ${id}`;
     }
-
-
+ 
     //Create findAll method
     async findAll(): Promise<string[]> {
         return ['Hello findAll', 'Hello findAll 2'];
