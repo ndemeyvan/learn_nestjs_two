@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { UsersService } from './users.service';
 //import user dto
 import { CreateUserDto } from './dtos/create-user.dto';
@@ -24,38 +24,38 @@ export class UsersController {
     }
 
     //Get all users method here
-    @Get("/users")
+    @Get()
     getAllUsers() {
         return this.usersService.getAllUsers();
     }
 
 
     //Get user by email method here
-    @Get("/users/:email")
-    getUserByEmail(@Param('email')email: string) {
-        return this.usersService.getUserByEmail(email);
+    @Get("/:id")
+    getUserById(@Param('id')id: number) {
+        return this.usersService.getUserById(id);
     }
 
     //Delete user method here
-    @Get("/users/delete/:id")
+    @Delete("/delete/:id")
     deleteUser(@Param('id')id: number) {
         return this.usersService.deleteUser(id);
     }
 
     //Update user method here
-    @Post("/users/update/:id")
+    @Put("/update/:id")
     updateUser(@Param('id')id: number, @Body() createUserDto: CreateUserDto) {
         return this.usersService.updateUser(id, createUserDto);
     }
 
     //Get user with pagination method here
-    @Get("/users/pagination/:page/:limit")
+    @Get("/pagination/:page/:limit")
     getUsersWithPagination(@Param('page')page: number, @Param('limit')limit: number) {
         return this.usersService.getUsersWithPagination(page, limit);
     }
 
     //Get user base on id and email method here
-    @Get("/users/:id/:email")
+    @Get("/:id/:email")
     getUserByIdAndEmail(@Param('id')id: number, @Param('email')email: string) {
         return this.usersService.getUserByIdAndEmail(id, email);
     }
