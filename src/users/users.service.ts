@@ -41,6 +41,10 @@ export class UsersService {
     //Update user method
     async updateUser(id: number, createUserDto: CreateUserDto) {
         const user = await this.repo.findOne(id);
+        //Catch error if user not found
+        if (!user) {
+            throw new Error('User not found');
+        }
         user.email = createUserDto.email;
         user.name = createUserDto.name;
         const userUpdate = this.repo.create(user);

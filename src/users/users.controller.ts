@@ -32,8 +32,8 @@ export class UsersController {
 
     //Get user by email method here
     @Get("/users/:email")
-    getUserByEmail(@Param('email')email: number) {
-        return this.usersService.getUserById(email);
+    getUserByEmail(@Param('email')email: string) {
+        return this.usersService.getUserByEmail(email);
     }
 
     //Delete user method here
