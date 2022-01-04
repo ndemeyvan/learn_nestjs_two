@@ -10,3 +10,4 @@ import { Report } from './entities/report.entity';
   providers: [ReportsService]
 })
 export class ReportsModule {}
+

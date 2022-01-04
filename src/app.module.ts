@@ -15,6 +15,7 @@ import { Report } from './reports/entities/report.entity';
       type: 'sqlite',
       database: 'db.sqlite',
       entities: [User,Report],
+      //Ne jamais mettre true a synchronize en prod
       synchronize: true,
     }),
   ],
