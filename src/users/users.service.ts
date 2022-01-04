@@ -69,7 +69,7 @@ export class UsersService {
         });
     }
 
-    //Getuser base on id and email method
+    //Get user base on id and email method
     async getUserByIdAndEmail(id: number, email: string) {
         return await this.repo.findOne({
             where: [{
