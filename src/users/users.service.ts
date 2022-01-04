@@ -30,7 +30,12 @@ export class UsersService {
 
     //Get user by id method
     async getUserById(id: number) {
-        return await this.repo.findOne(id);
+        const user = await this.repo.findOne(id);
+        //Catch error if user not found
+        if (!user) {
+            throw new NotFoundException('User not found');
+        }
+        return user;
     }
 
     //Delete user method
