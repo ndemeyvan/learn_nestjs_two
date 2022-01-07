@@ -30,7 +30,6 @@ export class UsersController {
         return this.usersService.getAllUsers();
     }
 
-
     //Get user by email method here
     // @UseInterceptors(new SerializeInterceptor(UserDto))
     @Get("/:id")
