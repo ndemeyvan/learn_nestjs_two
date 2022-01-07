@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put,UseInterceptors,ClassSerializerInterceptor } from '@nestjs/common';
 import { UsersService } from './users.service';
 //import user dto
 import { CreateUserDto } from './dtos/create-user.dto';
@@ -31,6 +31,7 @@ export class UsersController {
 
 
     //Get user by email method here
+    @UseInterceptors(ClassSerializerInterceptor)
     @Get("/:id")
     getUserById(@Param('id') id: string) {
         return this.usersService.getUserById(parseInt(id));

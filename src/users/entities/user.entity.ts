@@ -8,6 +8,8 @@ import {
   Unique,
 } from 'typeorm';
 //AfterInsert is a decorator that is used to execute a function after an entity is inserted.
+//import exclude class-transformer
+import { Exclude } from 'class-transformer';
 
 @Entity()
 export class User {
@@ -21,6 +23,7 @@ export class User {
   @Unique(['email'])
   email: string;
 
+  @Exclude()//ne renvoi pas ce champ dans le json en reponse
   @Column()
   password: string;
 
