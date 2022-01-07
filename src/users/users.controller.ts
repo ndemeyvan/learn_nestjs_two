@@ -4,6 +4,7 @@ import { CreateUserDto } from './dtos/create-user.dto';
 import { Serialize } from 'src/interceptors/serialize.interceptor';
 import { UserDto } from './dtos/user.dto';
 import { AuthService } from './auth.service';
+import { LoginUserDto } from './dtos/login-user.dto';
 
 
 @Controller('auth')
@@ -21,8 +22,8 @@ export class UsersController {
 
     //Sign in method here
     @Post("/signin")
-    signIn(@Body() createUserDto: CreateUserDto) {
-        return 'This action signs in a user : ' + createUserDto.email;
+    signIn(@Body() loginUserDto: LoginUserDto) {
+        return this.authService.signIn(loginUserDto);
     }
 
     //Get all users method here
