@@ -4,6 +4,7 @@ import {
   NestInterceptor,
   CallHandler,
   UseInterceptors,
+  Controller,
 } from '@nestjs/common';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -20,13 +21,13 @@ export function Serialize(dto: ClassConstructor){
 
 
 export class SerializeInterceptor implements NestInterceptor {
-    constructor(private dto:any ) {}
+    constructor(private dto:any) {}
 
   intercept(context: ExecutionContext, handler: CallHandler): Observable<any> {
     //Ici c'est la ou il est possible d'excecuter un code avant la requete
     //ne soit excecuter par le request handler
     //on peut aussi utiliser le CallHandler pour retourner un resultat
-    console.log('Before the handler ...');
+    console.log('Request comme from : ', context.getClass().name);
     return handler.handle().pipe(
       map((data: any) => {
         console.log('Before the response is send out ...' ,data);
