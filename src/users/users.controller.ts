@@ -1,12 +1,12 @@
 import { Body, Controller, Delete, Get, Param, Post, Put,UseInterceptors } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dtos/create-user.dto';
-import { SerializeInterceptor } from 'src/interceptors/serialize.interceptor';
+import { Serialize } from 'src/interceptors/serialize.interceptor';
 import { UserDto } from './dtos/user.dto';
-//import serializeInterceptor from interceptor file
 
 
 @Controller('auth')
+@Serialize(UserDto)
 export class UsersController {
 
     //import user service
@@ -32,7 +32,7 @@ export class UsersController {
 
 
     //Get user by email method here
-    @UseInterceptors(new SerializeInterceptor(UserDto))
+    // @UseInterceptors(new SerializeInterceptor(UserDto))
     @Get("/:id")
     getUserById(@Param('id') id: string) {
         return this.usersService.getUserById(parseInt(id));
