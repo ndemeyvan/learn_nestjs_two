@@ -29,6 +29,7 @@ export class SerializeInterceptor implements NestInterceptor {
     //on peut aussi utiliser le CallHandler pour retourner un resultat
     console.log('Request come from : ', {
         "context":context.getClass().name,
+        "route":context.getHandler().name,
     });
     return handler.handle().pipe(
       map((data: any) => {

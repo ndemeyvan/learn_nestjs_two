@@ -4,6 +4,7 @@ import { UsersService } from './users.service';
 import {randomBytes,scrypt as _scrypt} from 'crypto';
 import { promisify } from 'util';
 import { LoginUserDto } from './dtos/login-user.dto';
+import { User } from './entities/user.entity';
 
 const scrypt = promisify(_scrypt);
 
@@ -14,7 +15,7 @@ export class AuthService {
 
     constructor(private userService:UsersService) {}
 
-    async signUp(createUserDto: CreateUserDto) {
+    async signUp(createUserDto: CreateUserDto):Promise<User> {
         //see if email already exists
         const existingUser = await this.userService.getUserByEmail(createUserDto.email);
         if(existingUser){
@@ -40,9 +41,11 @@ export class AuthService {
         const [salt,hashedPassword] = existingUser.password.split('.');
         //Hash the password
         const newHashPassword = (await  scrypt(loginUserDto.password,salt,32)) as Buffer;
+        //Compare the hashed password
         if(newHashPassword.toString('hex') !== hashedPassword){
             throw new BadRequestException('Invalid email/password');
         }
+        //Return user
         return existingUser;
     }
 

@@ -58,7 +58,7 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 ## DEPENDENCY
-
+npm install cookie-session @types/cookie-session
 
 ## Support
 
